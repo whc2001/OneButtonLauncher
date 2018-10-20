@@ -56,6 +56,7 @@ namespace OneButtonLauncher
                     Thread.Sleep(1);
                     Application.DoEvents();
                 }
+                Application.RemoveMessageFilter(eventHandler);
                 string launch = ini.Read("Launch", count.ToString());
                 if (!string.IsNullOrEmpty(launch))
                 {
@@ -66,7 +67,7 @@ namespace OneButtonLauncher
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.ToString(), "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"试图运行 {launch} 时发生错误: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
